@@ -81,7 +81,10 @@ int main(int argc, char **argv)
 	}
 	while (fgets(op, 1024, fp))
 	{
-		n++, getopcode(&top, op, n);
+		n++;
+		if (op[0] == '#')
+			continue;
+		getopcode(&top, op, n);
 	}
 	fclose(fp);
 	free_list(top);
