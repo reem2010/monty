@@ -93,7 +93,8 @@ void pop(stack_t **stack, unsigned int l)
 		fclose(fp), exit(EXIT_FAILURE);
 	}
 	tmp = (*stack)->prev;
-	tmp->next = NULL;
+	if (tmp)
+		tmp->next = NULL;
 	free(*stack);
 	(*stack) = tmp;
 }
