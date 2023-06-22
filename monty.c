@@ -12,7 +12,8 @@ void getopcode(stack_t **top, char *s, int n)
 	instruction_t op[] = {{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-		{"swap", swap}};
+		{"swap", swap},
+		{"nop", nop}};
 
 	temp = strtok(s, "\n");
 	if (!temp)
@@ -20,7 +21,7 @@ void getopcode(stack_t **top, char *s, int n)
 	temp = strtok(temp, " ");
 	if (!temp)
 		return;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (!strcmp("push", temp))
 		{

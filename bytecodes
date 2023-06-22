@@ -5,8 +5,6 @@ pall
 swap
 pall
 pop
-pall 
-swap
-pall
+nop
 pop
-swap
+pall
