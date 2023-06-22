@@ -11,7 +11,8 @@ void getopcode(stack_t **top, char *s, int n)
 	int i = 0;
 	instruction_t op[] = {{"pall", pall},
 		{"pint", pint},
-		{"pop", pop}};
+		{"pop", pop},
+		{"swap", swap}};
 
 	temp = strtok(s, "\n");
 	if (!temp)
@@ -19,7 +20,7 @@ void getopcode(stack_t **top, char *s, int n)
 	temp = strtok(temp, " ");
 	if (!temp)
 		return;
-	while (i < 3)
+	while (i < 4)
 	{
 		if (!strcmp("push", temp))
 		{
@@ -38,7 +39,22 @@ void getopcode(stack_t **top, char *s, int n)
 	fprintf(stderr, "L%d: unknown instruction %s\n", n, temp);
 	exit(EXIT_FAILURE);
 }
+/**
+ * free_list - free the stack
+ * @top: top of the stack
+ */
+void free_list(stack_t *top)
+{
+	stack_t *temp, *temp1;
 
+	temp = top;
+	while (temp)
+	{
+		temp1 = temp;
+		temp = temp->prev;
+		free(temp1);
+	}
+}
 /**
  * main - interpreter
  * @argv: argument
