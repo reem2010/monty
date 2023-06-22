@@ -29,7 +29,8 @@ void push(stack_t **stack, char *data, int l)
 
 	if (!data)
 	{
-		free_list(*stack), fprintf(stderr, "L%d: usage: push integer", l);
+		free_list(*stack), fflush(stdout);
+		fprintf(stderr, "L%d: usage: push integer\n", l);
 		fclose(fp), exit(EXIT_FAILURE);
 	}
 	if (data[i] == '-')
@@ -38,14 +39,16 @@ void push(stack_t **stack, char *data, int l)
 	{
 		if (data[i] < 48 || data[i] > 57)
 		{
-			free_list(*stack), fprintf(stderr, "L%d: usage: push integer", l);
+			free_list(*stack), fflush(stdout);
+			fprintf(stderr, "L%d: usage: push integer\n", l);
 			fclose(fp), exit(EXIT_FAILURE);
 		} i++;
 	}
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		free_list(*stack), fprintf(stderr, "Error: malloc failed\n");
+		free_list(*stack), fflush(stdout);
+		fprintf(stderr, "Error: malloc failed\n");
 		fclose(fp), exit(EXIT_FAILURE);
 	}
 	new->next = NULL;
@@ -75,8 +78,7 @@ void pall(stack_t **stack, unsigned int l)
 	temp = (*stack);
 	while (temp)
 	{
-
-		printf("%d\n", temp->n);
+		fprintf(stdout, "%d\n", temp->n);
 		temp = temp->prev;
 	}
 }

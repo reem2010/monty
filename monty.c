@@ -32,7 +32,7 @@ void getopcode(stack_t **top, char *s, int n)
 		i++;
 	}
 	fclose(fp);
-	free_list(*top);
+	free_list(*top), fflush(stdout);
 	fprintf(stderr, "L%d: unknown instruction %s\n", n, temp);
 	exit(EXIT_FAILURE);
 }
