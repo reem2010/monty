@@ -37,4 +37,5 @@ void getopcode(stack_t **stack, char *s, int n);
 void push(stack_t **stack, char *data, int l);
 void pall(stack_t **stack, unsigned int line_number);
 void free_list(stack_t *top);
+void pint(stack_t **stack, unsigned int line_number);
 #endif
