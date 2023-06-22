@@ -14,6 +14,11 @@ void pint(stack_t **stack, unsigned int l)
 	}
 	printf("%d\n", (*stack)->n);
 }
+/**
+ * swap - swap two elements
+ * @stack: top element
+ * @l: number of line
+ */
 void swap(stack_t **stack, unsigned int l)
 {
 	stack_t *tmp;
@@ -33,6 +38,11 @@ void swap(stack_t **stack, unsigned int l)
 		((*stack)->prev)->next = *stack;
 	*stack = tmp;
 }
+/**
+ * nop - nothing
+ * @stack: top element
+ * @l: number of line
+ */
 void nop(stack_t **stack, unsigned int l)
 {
 	(void)(*stack);

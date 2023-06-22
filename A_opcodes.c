@@ -66,6 +66,11 @@ void pall(stack_t **stack, unsigned int l)
 		temp = temp->prev;
 	}
 }
+/**
+ * pop - pop element
+ * @stack: top element
+ * @l: number of line
+ */
 void pop(stack_t **stack, unsigned int l)
 {
 	stack_t *tmp;
