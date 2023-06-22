@@ -79,6 +79,7 @@ void pall(stack_t **stack, unsigned int l)
 	temp = (*stack);
 	while (temp)
 	{
+
 		printf("%d\n", temp->n);
 		temp = temp->prev;
 	}
