@@ -29,9 +29,8 @@ void push(stack_t **stack, char *data, int l)
 
 	if (!data)
 	{
-		free_list(*stack);
-		fprintf(stderr, "L%d: usage: push integer", l);
-		exit(EXIT_FAILURE);
+		free_list(*stack), fprintf(stderr, "L%d: usage: push integer", l);
+		fclose(fp), exit(EXIT_FAILURE);
 	}
 	if (data[i] == '-')
 		data = strtok(data, "-"), mul = -1;
@@ -39,23 +38,20 @@ void push(stack_t **stack, char *data, int l)
 	{
 		if (data[i] < 48 || data[i] > 57)
 		{
-			free_list(*stack);
-			fprintf(stderr, "L%d: usage: push integer", l);
-			exit(EXIT_FAILURE);
-		}
-		i++;
+			free_list(*stack), fprintf(stderr, "L%d: usage: push integer", l);
+			fclose(fp), exit(EXIT_FAILURE);
+		} i++;
 	}
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		free_list(*stack);
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		free_list(*stack), fprintf(stderr, "Error: malloc failed\n");
+		fclose(fp), exit(EXIT_FAILURE);
 	}
 	new->next = NULL;
 	new->n = atoi(data) * mul;
 	if (!(*stack))
-		*stack = new;
+		*stack = new, (*stack)->next = NULL, (*stack)->prev = NULL;
 	else
 	{
 		temp = (*stack);
@@ -73,7 +69,7 @@ void pall(stack_t **stack, unsigned int l)
 {
 	stack_t *temp;
 	(void)l;
-	
+
 	if (!stack)
 		return;
 	temp = (*stack);

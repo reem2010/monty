@@ -1,6 +1,7 @@
 #include "monty.h"
 /**
  * getopcode - get the opcode
+ * @top: head of stack
  * @s: string
  * @n: line
  */
@@ -21,7 +22,6 @@ void getopcode(stack_t **top, char *s, int n)
 		if (!strcmp("push", temp))
 		{
 			push(top, strtok(NULL, " "), n);
-
 			return;
 		}
 		if (!strcmp(s, op[i].opcod))
@@ -31,6 +31,7 @@ void getopcode(stack_t **top, char *s, int n)
 		}
 		i++;
 	}
+	fclose(fp);
 	free_list(*top);
 	fprintf(stderr, "L%d: unknown instruction %s\n", n, temp);
 	exit(EXIT_FAILURE);
@@ -44,7 +45,6 @@ void getopcode(stack_t **top, char *s, int n)
  */
 int main(int argc, char **argv)
 {
-	FILE *fp;
 	char op[1024];
 	int n = 0;
 	stack_t *top = NULL;
@@ -64,8 +64,7 @@ int main(int argc, char **argv)
 	{
 		n++, getopcode(&top, op, n);
 	}
-
+	fclose(fp);
 	free_list(top);
 	return (0);
 }
-
