@@ -7,7 +7,7 @@
  */
 void getopcode(stack_t **top, char *s, int n)
 {
-	char *temp, *temp1;
+	char *temp;
 	int i = 0;
 	instruction_t op[] = {{"pall", pall},
 		{"pint", pint},
@@ -16,35 +16,27 @@ void getopcode(stack_t **top, char *s, int n)
 	temp = strtok(s, "\n");
 	if (!temp)
 		return;
-	while (temp)
+	temp = strtok(temp, " ");
+	if (!temp)
+		return;
+	while (i < 3)
 	{
-		temp1 = strtok(temp, ";");
-		temp = strtok(NULL, "");
-		temp1 = strtok(temp1, " ");
-		while (i < 3)
+		if (!strcmp("push", temp))
 		{
-
-			if (!strcmp("push", temp1))
-			{
-				push(top, strtok(NULL, " "), n);
-				break;
-			}
-			if (!strcmp(temp1, op[i].opcod))
-			{
-				op[i].f(top, n);
-				break;
-			}
-			i++;
+			push(top, strtok(NULL, " "), n);
+			return;
 		}
-		if (i == 3)
+		if (!strcmp(temp, op[i].opcod))
 		{
-			fclose(fp);
-			free_list(*top), fflush(stdout);
-			fprintf(stderr, "L%d: unknown instruction %s\n", n, temp);
-			exit(EXIT_FAILURE);
+			op[i].f(top, n);
+			return;
 		}
+		i++;
 	}
-
+	fclose(fp);
+	free_list(*top), fflush(stdout);
+	fprintf(stderr, "L%d: unknown instruction %s\n", n, temp);
+	exit(EXIT_FAILURE);
 }
 
 /**
