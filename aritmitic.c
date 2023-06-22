@@ -82,3 +82,28 @@ void divide(stack_t **stack, unsigned int l)
 	pop(stack, l);
 	(*stack)->n = div;
 }
+/**
+ * mod - mod function
+ * @stack: top element
+ * @l: number of line
+ */
+void mod(stack_t **stack, unsigned int l)
+{
+	int mod;
+
+	if (!(*stack) || !((*stack)->prev))
+	{
+		free_list(*stack), fflush(stdout);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", l);
+		fclose(fp), exit(EXIT_FAILURE);
+	}
+	if (!((*stack)->n))
+	{
+		free_list(*stack), fflush(stdout);
+		fprintf(stderr, "L%d: division by zero\n", l);
+		fclose(fp), exit(EXIT_FAILURE);
+	}
+	mod = (((*stack)->prev)->n) % ((*stack)->n);
+	pop(stack, l);
+	(*stack)->n = mod;
+}
