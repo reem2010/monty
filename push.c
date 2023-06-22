@@ -82,3 +82,18 @@ void pall(stack_t **stack, unsigned int l)
 		temp = temp->prev;
 	}
 }
+void pop(stack_t **stack, unsigned int l)
+{
+	stack_t *tmp;
+
+	if (!(*stack))
+	{
+		fflush(stdout);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", l);
+		fclose(fp), exit(EXIT_FAILURE);
+	}
+	tmp = (*stack)->prev;
+	tmp->next = NULL;
+	free(*stack);
+	(*stack) = tmp;
+}
