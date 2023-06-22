@@ -24,7 +24,7 @@ void getopcode(stack_t **top, char *s, int n)
 			push(top, strtok(NULL, " "), n);
 			return;
 		}
-		if (!strcmp(s, op[i].opcod))
+		if (!strcmp(temp, op[i].opcod))
 		{
 			op[i].f(top, n);
 			return;
