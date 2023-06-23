@@ -1,8 +1,0 @@
-push -10
-#ls
-push -5
-push -65
-pall
-add
-pall
-pchar
