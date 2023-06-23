@@ -8,7 +8,7 @@ void pint(stack_t **stack, unsigned int l)
 {
 	if (!(*stack))
 	{
-		fflush(fp);
+		fflush(stdout);
 		fprintf(stderr, "L%d: can't pint, stack empty\n", l);
 		fclose(fp), exit(EXIT_FAILURE);
 	}
@@ -55,20 +55,21 @@ void nop(stack_t **stack, unsigned int l)
  */
 void pchar(stack_t **stack, unsigned int l)
 {
-	char c = (*stack)->n;
+	char c;
 
 	if (!(*stack))
 	{
-		fflush(fp);
+		fflush(stdout);
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", l);
 		fclose(fp), exit(EXIT_FAILURE);
 	}
+	c = (*stack)->n;
 	if ((c > 64 && c < 91) || (c > 96 && c < 123))
 	{
 		printf("%c\n", (*stack)->n);
 		return;
 	}
-	fflush(fp);
+	fflush(stdout);
 	fprintf(stderr, "L%d: can't pchar, value out of range\n", l);
 	fclose(fp), exit(EXIT_FAILURE);
 }
