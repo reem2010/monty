@@ -24,6 +24,8 @@ void getopcode(stack_t **top, char *s, int n)
 		return;
 	while (i < 11)
 	{
+		if (temp[0] == '#')
+			return;
 		if (!strcmp("push", temp))
 		{
 			push(top, strtok(NULL, " "), n);
@@ -83,8 +85,6 @@ int main(int argc, char **argv)
 	while (fgets(op, 1024, fp))
 	{
 		n++;
-		if (op[0] == '#')
-			continue;
 		getopcode(&top, op, n);
 	}
 	fclose(fp);
