@@ -48,3 +48,27 @@ void nop(stack_t **stack, unsigned int l)
 	(void)(*stack);
 	(void)l;
 }
+/**
+ * pchar -  prints the char at the top of the stack
+ * @stack: top element
+ * @l: number of line
+ */
+void pchar(stack_t **stack, unsigned int l)
+{
+	char c = (*stack)->n;
+
+	if (!(*stack))
+	{
+		fflush(fp);
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", l);
+		fclose(fp), exit(EXIT_FAILURE);
+	}
+	if ((c > 64 && c < 91) || (c > 96 && c < 123))
+	{
+		printf("%c\n", (*stack)->n);
+		return;
+	}
+	fflush(fp);
+	fprintf(stderr, "L%d: can't pchar, value out of range\n", l);
+	fclose(fp), exit(EXIT_FAILURE);
+}

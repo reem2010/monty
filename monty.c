@@ -13,7 +13,8 @@ void getopcode(stack_t **top, char *s, int n)
 		{"pint", pint}, {"sub", sub},
 		{"pop", pop}, {"add", add},
 		{"swap", swap}, {"mul", mul},
-		{"nop", nop}, {"div", divide}, {"mod", mod}};
+		{"nop", nop}, {"div", divide}, {"mod", mod},
+		{"pchar", pchar}};
 
 	temp = strtok(s, "\n");
 	if (!temp)
@@ -21,7 +22,7 @@ void getopcode(stack_t **top, char *s, int n)
 	temp = strtok(temp, " ");
 	if (!temp)
 		return;
-	while (i < 10)
+	while (i < 11)
 	{
 		if (!strcmp("push", temp))
 		{
